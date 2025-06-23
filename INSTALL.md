@@ -63,7 +63,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/Sluchyk/TechnicalTask.git
+git clone https://github.com/Sluchyk/job_scrapper.git
 Build the project:
 
 bash

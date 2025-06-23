@@ -1,6 +1,3 @@
-
-Certainly! Here's an updated README file tailored for a Java and Spring Boot application with MySQL:
-
 Job Scraper Application
 Overview
 The Job Scraper Application is a Java and Spring Boot application designed to simplify the job search process by scraping job listings from jobs.techstars.com based on specific job functions. Users can input their desired work functions or job categories, and the application will automatically crawl the website to gather relevant job postings for those functions. The scraped data is stored in a MySQL database and presented in a user-friendly format. Users can filter or sort the results based on different criteria such as job location or posting date.
