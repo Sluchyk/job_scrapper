@@ -1,6 +1,6 @@
-package com.example.testTask.job_scraper;
+package com.example.job_scrapper.job_scraper;
 
-import com.example.testTask.job_scraper.model.Job;
+import com.example.job_scrapper.job_scraper.model.Job;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;

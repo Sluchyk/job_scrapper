@@ -1,6 +1,5 @@
-package com.example.testTask.job_scraper.httpClient;
+package com.example.job_scrapper.job_scraper.httpClient;
 
-import com.example.testTask.job_scraper.httpClient.HttpBuilderClient;
 import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

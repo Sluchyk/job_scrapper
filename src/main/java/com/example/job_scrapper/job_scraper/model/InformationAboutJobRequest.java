@@ -1,4 +1,4 @@
-package com.example.testTask.job_scraper.model;
+package com.example.job_scrapper.job_scraper.model;
 
 import java.util.List;
 
