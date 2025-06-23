@@ -1,4 +1,4 @@
-package com.example.testTask;
+package com.example.job_scrapper;
 
 public class MessageConstants {
     private MessageConstants() {

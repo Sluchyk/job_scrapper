@@ -1,6 +1,6 @@
-package com.example.testTask.job_scraper;
+package com.example.job_scrapper.job_scraper;
 
-import static com.example.testTask.MessageConstants.JOB_FUNCTION;
+import com.example.job_scrapper.MessageConstants;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -13,7 +13,7 @@ public class JobFunctionEncoder {
     public String encodeJobFunction(String[] jobFunction){
         SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
         String encodedJobFunction = Jwts.builder().
-                claim(JOB_FUNCTION,jobFunction)
+                claim(MessageConstants.JOB_FUNCTION,jobFunction)
                 .signWith(key)
                 .compact();
         return getOnlyPayLoad(encodedJobFunction);

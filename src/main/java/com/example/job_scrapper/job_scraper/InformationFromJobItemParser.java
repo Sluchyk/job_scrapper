@@ -1,30 +1,27 @@
-package com.example.testTask.job_scraper;
+package com.example.job_scrapper.job_scraper;
 
-import static com.example.testTask.MessageConstants.NOT_FOUND;
-import static com.example.testTask.MessageConstants.REQUEST_NOT_FOUND_EXCEPTION_METHOD;
-import static com.example.testTask.MessageConstants.ZERO_JOBS_FOUND;
-import static com.example.testTask.job_scraper.HtmlElementsConstants.DATA_TEST_ID_READ_MODE;
-import static com.example.testTask.job_scraper.HtmlElementsConstants.HTML_ATTRIBUTE_HREF;
-import static com.example.testTask.job_scraper.HtmlElementsConstants.JOB_ITEM_ELEMENT;
-import static com.example.testTask.job_scraper.HtmlElementsConstants.JOB_ITEM_URL;
-import static com.example.testTask.job_scraper.HtmlElementsConstants.JOB_TAG_ELEMENT;
-import static com.example.testTask.job_scraper.HtmlElementsConstants.JOB_TITLE_ELEMENT;
-import static com.example.testTask.job_scraper.UrlConstants.URL_JOB_WEB_PAGE;
-import com.example.testTask.job_scraper.httpClient.HttpClientBuilder;
-import com.example.testTask.job_scraper.model.InformationAboutJobRequest;
-import com.example.testTask.job_scraper.model.Job;
-import com.example.testTask.job_scraper.model.JobItem;
-import com.example.testTask.utils.ListConventor;
-import com.example.testTask.utils.ReferenceModifier;
+import static com.example.job_scrapper.job_scraper.HtmlElementsConstants.DATA_TEST_ID_READ_MODE;
+import static com.example.job_scrapper.job_scraper.HtmlElementsConstants.HTML_ATTRIBUTE_HREF;
+import static com.example.job_scrapper.job_scraper.HtmlElementsConstants.JOB_ITEM_ELEMENT;
+import static com.example.job_scrapper.job_scraper.HtmlElementsConstants.JOB_ITEM_URL;
+import static com.example.job_scrapper.job_scraper.HtmlElementsConstants.JOB_TAG_ELEMENT;
+import static com.example.job_scrapper.job_scraper.HtmlElementsConstants.JOB_TITLE_ELEMENT;
+import static com.example.job_scrapper.job_scraper.UrlConstants.URL_JOB_WEB_PAGE;
+
+import com.example.job_scrapper.MessageConstants;
+import com.example.job_scrapper.job_scraper.httpClient.HttpClientBuilder;
+import com.example.job_scrapper.job_scraper.model.InformationAboutJobRequest;
+import com.example.job_scrapper.job_scraper.model.Job;
+import com.example.job_scrapper.job_scraper.model.JobItem;
+import com.example.job_scrapper.utils.ListConventor;
+import com.example.job_scrapper.utils.ReferenceModifier;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import okhttp3.Response;
 import org.jsoup.Jsoup;
@@ -63,7 +60,7 @@ public class InformationFromJobItemParser {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         return new InformationAboutJobRequest(jobList, totalNumberOfJobs);
-            } else throw  new NotFoundException(REQUEST_NOT_FOUND_EXCEPTION_METHOD);
+            } else throw  new NotFoundException(MessageConstants.REQUEST_NOT_FOUND_EXCEPTION_METHOD);
         } catch (IOException | NotFoundException e) {
             return new InformationAboutJobRequest(new ArrayList<>(),"0");
         }
@@ -72,7 +69,7 @@ public class InformationFromJobItemParser {
     private List<JobItem> parseHtmlToJobItemObject(Document document) throws NotFoundException {
         Elements elements = document.select(JOB_ITEM_ELEMENT);
         if (elements.isEmpty()) {
-            throw new NotFoundException(ZERO_JOBS_FOUND);
+            throw new NotFoundException(MessageConstants.ZERO_JOBS_FOUND);
         }
         return elements.parallelStream()
                 .map(this::createJobItemFromElement)
@@ -88,7 +85,7 @@ public class InformationFromJobItemParser {
     }
 
     private String getUrlForApplication(Element element) {
-        String link = NOT_FOUND;
+        String link = MessageConstants.NOT_FOUND;
         Element linkElement = element.select(DATA_TEST_ID_READ_MODE).first();
         if (linkElement != null) {
             link = linkElement.attr(HTML_ATTRIBUTE_HREF);
@@ -103,7 +100,7 @@ public class InformationFromJobItemParser {
         String tags;
         Elements tagElements = element.select(JOB_TAG_ELEMENT);
         if (tagElements.isEmpty()) {
-            tags = NOT_FOUND;
+            tags = MessageConstants.NOT_FOUND;
         } else {
             tags = ListConventor.convertListToString(tagElements);
         }
@@ -119,7 +116,7 @@ public class InformationFromJobItemParser {
         return result;
     }
     private String parseJobTitle(Element element){
-        String jobTitle = NOT_FOUND;
+        String jobTitle = MessageConstants.NOT_FOUND;
         Element jobTitleElement = element.selectFirst(JOB_TITLE_ELEMENT);
         if (jobTitleElement != null) {
             jobTitle = jobTitleElement.text();

@@ -1,8 +1,8 @@
-package com.example.testTask.job_scraper;
+package com.example.job_scrapper.job_scraper;
 
-import com.example.testTask.job_scraper.model.Job;
-import com.example.testTask.job_scraper.model.JobEntity;
-import com.example.testTask.job_scraper.model.JobRepository;
+import com.example.job_scrapper.job_scraper.model.Job;
+import com.example.job_scrapper.job_scraper.model.JobEntity;
+import com.example.job_scrapper.job_scraper.model.JobRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 @Service

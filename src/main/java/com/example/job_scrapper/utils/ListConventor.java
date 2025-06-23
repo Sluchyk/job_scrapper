@@ -1,4 +1,4 @@
-package com.example.testTask.utils;
+package com.example.job_scrapper.utils;
 
 import java.util.stream.Collectors;
 

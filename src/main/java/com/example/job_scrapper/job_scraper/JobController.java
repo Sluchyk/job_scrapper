@@ -1,13 +1,11 @@
-package com.example.testTask.job_scraper;
+package com.example.job_scrapper.job_scraper;
 
-import static com.example.testTask.MessageConstants.FIRST_DEFAULT_PATH_VARIABLE;
-import static com.example.testTask.MessageConstants.MODEL_ATTRIBUTE_JOBS;
-import static com.example.testTask.MessageConstants.MODEL_ATTRIBUTE_TOTAL_JOBS;
-import com.example.testTask.job_scraper.model.InformationAboutJobRequest;
-import com.example.testTask.job_scraper.model.Job;
-import java.io.IOException;
+import com.example.job_scrapper.MessageConstants;
+import com.example.job_scrapper.job_scraper.model.InformationAboutJobRequest;
+import com.example.job_scrapper.job_scraper.model.Job;
+
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +26,7 @@ public class JobController {
     }
 
     @GetMapping("/job")
-    public String getJobs(@RequestParam(defaultValue = FIRST_DEFAULT_PATH_VARIABLE) String[] selectedJobFunction,
+    public String getJobs(@RequestParam(defaultValue = MessageConstants.FIRST_DEFAULT_PATH_VARIABLE) String[] selectedJobFunction,
                           @RequestParam(required = false) String location,
                           Model model) {
 
@@ -36,11 +34,11 @@ public class JobController {
         jobService.save(jobRequestList.getJobItemList());
         List<Job> filteredList = jobFilter.filterJobsByAddress(jobRequestList.getJobItemList(),location);
         model.addAttribute(
-                MODEL_ATTRIBUTE_TOTAL_JOBS,
+                MessageConstants.MODEL_ATTRIBUTE_TOTAL_JOBS,
                 jobRequestList.getTotalNumberOfJobs());
 
         model.addAttribute(
-                MODEL_ATTRIBUTE_JOBS,
+                MessageConstants.MODEL_ATTRIBUTE_JOBS,
                 filteredList);
         return "main";
     }
